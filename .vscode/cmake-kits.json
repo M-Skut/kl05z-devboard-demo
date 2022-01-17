@@ -1,0 +1,10 @@
+[
+    {
+        "name": "GCC Arm Embedded",
+        "toolchainFile": "${workspaceRoot}/toolchain-conf/arm-none-eabi-gcc.cmake"
+    },
+    {
+        "name": "Arm Compiler 5",
+        "toolchainFile": "${workspaceRoot}/toolchain-conf/armcc.cmake"
+    }
+]

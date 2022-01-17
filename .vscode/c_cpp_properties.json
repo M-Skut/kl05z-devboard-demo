@@ -1,0 +1,23 @@
+{
+    "configurations": [
+        {
+            "name": "CrossARM",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "__ARMCC_VERSION",
+                "CORE_M0PLUS"
+            ],
+            //"forcedInclude": ["${workspaceFolder}/src/someFile.h"],
+            //"forcedInclude": ["/opt/toolchains/arm-compiler-5.06u7/include"],
+            "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-arm",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        }
+    ],
+    "version": 4
+
+}

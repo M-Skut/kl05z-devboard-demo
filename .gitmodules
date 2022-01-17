@@ -1,0 +1,6 @@
+[submodule "src/third-party/microrl"]
+	path = src/third-party/microrl
+	url = https://github.com/Helius/microrl
+[submodule "src/third-party/u8g2"]
+	path = src/third-party/u8g2
+	url = https://github.com/olikraus/u8g2/

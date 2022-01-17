@@ -1,0 +1,6 @@
+.cache
+.vscode/.cortex-debug.peripherals.state.json
+.vscode/.cortex-debug.registers.state.json
+build/CMakeFiles/
+build/.cmake
+build/docs/latex

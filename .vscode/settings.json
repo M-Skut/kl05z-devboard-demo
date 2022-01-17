@@ -1,0 +1,31 @@
+{
+    "files.associations": {
+        "system_mkl05z4.h": "c",
+        "mkl05z4.h": "c",
+        "stdint.h": "c",
+        "stdio.h": "c",
+        "stdlib.h": "c",
+        "core_cm0plus.h": "c",
+        "cstring": "c",
+        "i2c.h": "c",
+        "u8x8_mkl_hal.h": "c",
+        "delay.h": "c",
+        "type_traits": "c"
+    },
+    "cortex-debug.variableUseNaturalFormat": false,
+    "cmake.environment": {
+        "ARM_TOOL_VARIANT" : "mdk_lite"
+    },
+    "clangd.arguments": [
+		"--query-driver=arm-none-eabi*",
+		"--log=verbose",
+		"--completion-style=detailed",
+		"--clang-tidy",
+		"--clang-tidy-checks=-*,modernize*"
+    ],
+    "cSpell.words": [
+        "baudrate",
+        "initlaize",
+        "pinout"
+    ]
+}
