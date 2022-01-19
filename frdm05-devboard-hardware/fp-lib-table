@@ -1,0 +1,4 @@
+(fp_lib_table
+  (lib (name frdm05-devboard-hardware)(type KiCad)(uri ${KIPRJMOD}/frdm05-devboard-hardware.pretty)(options "")(descr ""))
+  (lib (name mikroBUS)(type KiCad)(uri ${KIPRJMOD}/mikroBUS.pretty)(options "")(descr ""))
+)

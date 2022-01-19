@@ -1,0 +1,19 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP 74HCT1G125GW
+D Single Buffer Gate Tri-State, TTL
+K Single Gate Buff Tri-State
+$ENDCMP
+#
+$CMP FRDM_KL05Z
+D FRDM KL05Z Development Board
+K FRDM KL05Z Development Board
+$ENDCMP
+#
+$CMP SD_Card_Fix
+D SD Card Reader
+K connector SD
+F http://portal.fciconnect.com/Comergent//fci/drawing/10067847.pdf
+$ENDCMP
+#
+#End Doc Library

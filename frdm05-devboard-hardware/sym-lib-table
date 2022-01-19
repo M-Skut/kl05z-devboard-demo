@@ -1,0 +1,5 @@
+(sym_lib_table
+  (lib (name mikroBUS)(type Legacy)(uri ${KIPRJMOD}/libraries/mikroBUS.lib)(options "")(descr ""))
+  (lib (name nokia_5510)(type Legacy)(uri ${KIPRJMOD}/libraries/nokia_5510.lib)(options "")(descr ""))
+  (lib (name frdm_kl05z)(type Legacy)(uri ${KIPRJMOD}/libraries/frdm_kl05z.lib)(options "")(descr ""))
+)
