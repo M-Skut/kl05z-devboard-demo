@@ -33,8 +33,11 @@ Rev. 2:
 - addition of optional fuses for 3V3 and 5V lines
 Rev. 2.1:
 - fix for 3V3 fuse
-- fix for some silkscreen areas 
-  
+- fix for buzzer footprint
+- fix for some silkscreen areas
+Rev. 2.2:
+- change 74HCT1G125GV buffer to faster 74AHCT1G125GV version
+
 
 ## Environment
 To develop this demonstration project, following set of tools and programs was used:
