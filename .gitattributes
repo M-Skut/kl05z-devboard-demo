@@ -1,0 +1,6 @@
+# Exclude generated IBOM and gerber files
+fdrm05-devboard-hardware/bom linguist-generated
+fdrm05-devboard-hardware/evalboard-gerbers linguist-generated
+
+# Exclude build files, left in git repo for easy reproduction of changing firmware and documentation
+build linguist-generated
