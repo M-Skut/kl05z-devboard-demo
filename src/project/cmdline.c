@@ -78,8 +78,13 @@ char* compl_world[NUM_OF_CMD + 1];
 void print_help(void)
 {
     uart_print("Use TAB key for completion\n\rCommand:\n\r");
-    uart_print("\tclear               - clear screen\n\r");
-    uart_print("\ti2c                 - I2C driver commands\n\r");
+    uart_print("\tclear               - clear screen\n");
+    uart_print("\ti2c                 - I2C driver commands\n");
+    uart_print("\tspi                 - SPI driver commands\n");
+    uart_print("\tled                 - WS2812B commands\n");
+    uart_print("\tpwmtest             - Test of PWM peripheral\n");
+    uart_print("\tadc                 - ADC driver commands\n");
+
 }
 
 void i2c_busscan(void)
