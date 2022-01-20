@@ -103,7 +103,7 @@ CMSIS functions as abstraction layer.
 - unified (in GPIO mapping, same peripheral but more instances etc.)
 
 
-### Communication peripheral drivers features:
+### Drivers features:
 #### UART:
 - different pinout configuration
 - automatic calculation for baudrate with ability to re-init if CPU speed changes
@@ -114,3 +114,34 @@ CMSIS functions as abstraction layer.
 #### I2C:
 - different pinout configuration
 - different speed selection
+- timeout detection in all functions
+- included fix for silicon errata
+  
+#### GPIO
+- bare-bones abstraction of the register setting
+- interrupt with callback functions
+- inline functions for fast pin setting
+
+#### Delay
+- SysTick-based delay
+- works without affecting SysTick settings
+- based on delay code from u8g2 project
+
+#### ADC
+- ADC calibration function
+- simple 16-bit value read
+- uses `gpio` driver for pin mapping
+- ADC presets (currently only one available)
+
+#### PWM
+- TPM-based PWM
+- uses `gpio` driver for pin mapping
+- allows setting period and pulse width in microseconds or as raw values
+
+#### WS2812
+- currently only GCC supported
+- based on [cpldcpu's WS2812 ARM bitbang driver](https://github.com/cpldcpu/light_ws2812/blob/master/light_ws2812_ARM/light_ws2812_cortex.c)
+
+#### MMA8451Q
+- range setting
+- conversion to float values
