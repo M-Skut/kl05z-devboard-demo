@@ -7,7 +7,7 @@
       "Application": "Pcbnew",
       "Version":     "5.1.12-1.fc34"
     },
-    "CreationDate":  "2022-01-19T22:29:51+01:00"
+    "CreationDate":  "2022-01-20T18:55:51+01:00"
   },
   "GeneralSpecs":
   {
@@ -15,7 +15,7 @@
     {
       "Name": "frdm05-devboard",
       "GUID": "6672646d-3035-42d6-9465-76626f617264",
-      "Revision": "2"
+      "Revision": "2.1"
     },
     "Size":
     {

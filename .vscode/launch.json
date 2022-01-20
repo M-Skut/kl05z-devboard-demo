@@ -20,9 +20,9 @@
             "svdFile": "${workspaceRoot}/device/MKL05Z4/MKL05Z4.svd",
 
         },
-        // Flash hex instead of axf - ther is a bug that hard-faults program
+        // Flash hex instead of axf - there is a bug that hard-faults program
         // for unknown reasons (missing libc while flashing? dunno)
-        // The same axf works in Ozone, not here, so at least make this target as flash-only
+        // The same axf works in SEGGER Ozone, not here, so at least make this target as flash-only
         {
             "cwd": "${workspaceRoot}",
             "executable": "./build/KL05Z-DevBoardDemo.hex",
