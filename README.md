@@ -20,6 +20,9 @@ To make development of advanced microcontroller projects simple, the DevBoard is
 
 ## Some photos of the hardware
 
+## Bill Of Materials
+Interactive Bill Of Materials for the newest revision of the hardware can be found [here](frdm05-devboard-hardware/bom/ibom.html)
+
 
 #### Hardware revision history
 Rev. 1:
@@ -61,7 +64,7 @@ To develop this demonstration project, following set of tools and programs was u
 Now you can open the project folder. Select GNU toolchain as CMake kit when asked and edit file `launch.json` inside `.vscode` folder if your `JLinkGDBServer` location is different than he one used in this project. For ARM Compiler 5.06 toolchain,
 an environment variable `ARMCC_TOOLCHAIN_PATH` has to be set to `bin` folder of the toolchain files. Alternatively, `armcc.cmake` file inside `toolchain-conf` can be edited to make te path setting permanent.
 
-### Enviroment features
+### Environment features
 - two-click switch between ARM Compiler 5 and GCC Compiler
 - all code editing features that Visual Studio Code has to offer
 - easy debugging of compiled code

@@ -6,7 +6,7 @@ encoding utf-8
 Sheet 1 1
 Title "KL05Z-EVALBOARD"
 Date "2022-01-20"
-Rev "2.1"
+Rev "2.2"
 Comp "AGH"
 Comment1 ""
 Comment2 ""
@@ -1518,7 +1518,7 @@ L frdm_kl05z:74HCT1G125GW U6
 U 1 1 61CC6C67
 P 4600 1250
 F 0 "U6" H 4300 1400 50  0000 L CNN
-F 1 "74HCT1G125GV" H 3850 1100 50  0000 L CNN
+F 1 "74AHCT1G125GV" H 3800 1100 50  0000 L CNN
 F 2 "Package_TO_SOT_SMD:SOT-23-5_HandSoldering" H 4600 1250 50  0001 C CNN
 F 3 "" H 4600 1250 50  0001 C CNN
 	1    4600 1250
@@ -2117,7 +2117,7 @@ Wire Wire Line
 	5850 2200 5850 2150
 Wire Wire Line
 	5550 2200 5550 2150
-Text Notes 4300 2500 0    50   ~ 0
+Text Notes 4300 2400 0    50   ~ 0
 Fuse ratings\nto be tested\nif not desired, 0R\nresistor can be used
 Wire Wire Line
 	1100 6650 1100 6450
@@ -2202,4 +2202,6 @@ Wire Wire Line
 Connection ~ 5550 2550
 Text GLabel 6050 3250 2    50   Input ~ 0
 3V3_UNPROT
+Text Notes 3550 1900 0    50   ~ 0
+74HCT1G125GV\nis too slow \nsimilar buffers from\nother manufacturers\ncan also be used
 $EndSCHEMATC

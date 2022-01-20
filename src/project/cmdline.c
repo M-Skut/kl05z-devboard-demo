@@ -6,6 +6,7 @@
 
 #include "MKL05Z4.h"
 
+#include "adc.h"
 #include "cmdline.h"
 #include "delay.h"
 #include "gpio.h"
@@ -17,7 +18,6 @@
 #include "u8x8_mkl_hal.h"
 #include "uart.h"
 #include "ws2812b.h"
-#include "adc.h"
 
 #include "config.h"
 #include "microrl.h"
@@ -40,13 +40,13 @@
 #define SUBCMD_ADC_READ "read"
 #define SUBCMD_ADC_KPAD_TEST "keypad_test"
 #define SUBCMD_ADC_KB_TEST "keyboard_test"
+#define SUBCMD_ADC_STYLO_DEMO "stylophone_demo"
 
 #define NUM_OF_CMD 7
 #define NUM_OF_I2C_SCMD 3
 #define NUM_OF_SPI_SCMD 1
 #define NUM_OF_LED_SCMD 1
-#define NUM_OF_ADC_SCMD 4
-
+#define NUM_OF_ADC_SCMD 5
 
 // Internal microrl pointer
 static microrl_t* prl = NULL;
@@ -70,7 +70,7 @@ char* keyworld[] = { CMD_HELP, CMD_CLEAR, CMD_I2C, CMD_SPI, CMD_LED, CMD_PWMTEST
 char* i2c_subcommands[] = { SUBCMD_MMA_TEST, SUBCMD_MMA_READALL, SUBCMD_I2C_BUSSCAN };
 char* spi_subcommands[] = { SUBCMD_SPI_TEST };
 char* led_subcommands[] = { SUBCMD_LED_TEST };
-char* adc_subcommands[] = { SUBCMD_ADC_INIT, SUBCMD_ADC_READ, SUBCMD_ADC_KPAD_TEST, SUBCMD_ADC_KB_TEST };
+char* adc_subcommands[] = { SUBCMD_ADC_INIT, SUBCMD_ADC_READ, SUBCMD_ADC_KPAD_TEST, SUBCMD_ADC_KB_TEST, SUBCMD_ADC_STYLO_DEMO };
 
 // array for comletion
 char* compl_world[NUM_OF_CMD + 1];
@@ -152,8 +152,10 @@ void led_test(void)
     uart_print("Testing WS2811B LEDs \r\n");
     gpio_pin_t rgb_led = { PORTB, GPIOB, 5 };
     ws2812b_init(rgb_led);
-    uint8_t data[] = { 0x00, 0xaa, 0xaa, 0xaa, 0x00, 0x55, 0x55, 0x55 };
-    ws2812b_write(rgb_led, data, 8);
+    uint8_t data[] = { 0xFF, 0x00, 0x00,
+        0x00, 0xFF, 0x00,
+        0x00, 0x00, 0xFF };
+    ws2812b_write(rgb_led, data, 9);
 }
 
 void pwm_test(void)
@@ -173,16 +175,17 @@ void pwm_test(void)
         pwm_pulsewidth_us(green_led_pwm, i * 200);
         delay_micro_seconds(10000);
     }
-//     gpio_pin_t red_led = {PORTB, GPIOB, 8};
-//     gpio_pin_init(red_led, GPIO_OUTPUT, GPIO_MUX_ALT1);
-//     gpio_fast_off(red_led);
-//     delay_micro_seconds(1000000);
-//     gpio_fast_on(red_led);
-//     delay_micro_seconds(1000000);
+    //     gpio_pin_t red_led = {PORTB, GPIOB, 8};
+    //     gpio_pin_init(red_led, GPIO_OUTPUT, GPIO_MUX_ALT1);
+    //     gpio_fast_off(red_led);
+    //     delay_micro_seconds(1000000);
+    //     gpio_fast_on(red_led);
+    //     delay_micro_seconds(1000000);
 }
 
-void adc_test_init(void) {
-    gpio_pin_t adc_a0_pin = {PORTB, GPIOB, 13};
+void adc_test_init(void)
+{
+    gpio_pin_t adc_a0_pin = { PORTB, GPIOB, 13 };
     adc_pin_t adc_a0 = adc_from_gpio(adc_a0_pin);
     adc_status_t cal_result = adc_init(adc_a0_pin, adc_a0, ADC_CONFIG_LOWPOWER_FAST);
     if (cal_result)
@@ -192,8 +195,9 @@ void adc_test_init(void) {
     }
 }
 
-void adc_test_read(void) {
-    gpio_pin_t adc_a0_pin = {PORTB, GPIOB, 13};
+void adc_test_read(void)
+{
+    gpio_pin_t adc_a0_pin = { PORTB, GPIOB, 13 };
     adc_pin_t adc_a0 = adc_from_gpio(adc_a0_pin);
     uint16_t val = adc_read(adc_a0);
     uart_print("\r\n ADC Read: ");
@@ -201,7 +205,8 @@ void adc_test_read(void) {
     uart_print(string_buffer);
 }
 
-void adc_print_on_display(gpio_pin_t adc_pin) {
+void adc_print_on_display(gpio_pin_t adc_pin)
+{
     uart_print("\r\n Starting display loop, press Ctrl-C to stop \r\n");
     adc_pin_t adc_channel = adc_from_gpio(adc_pin);
     adc_init(adc_pin, adc_channel, ADC_CONFIG_LOWPOWER_FAST);
@@ -212,8 +217,7 @@ void adc_print_on_display(gpio_pin_t adc_pin) {
     u8x8_SetFont(&u8x8, u8x8_font_amstrad_cpc_extended_f);
     run_task = true;
     uint16_t adc_val = 0;
-    while (run_task)
-    {
+    while (run_task) {
         u8x8_ClearDisplay(&u8x8);
         u8x8_DrawString(&u8x8, 0, 0, "ADC Value:");
         adc_val = adc_read(adc_channel);
@@ -224,7 +228,25 @@ void adc_print_on_display(gpio_pin_t adc_pin) {
     }
 }
 
+void stylophone_demo()
+{
+    gpio_pin_t kboard_gpio = { PORTA, GPIOA, 9 };
+    adc_pin_t kboard_adc = adc_from_gpio(kboard_gpio);
+    adc_init(kboard_gpio, kboard_adc, ADC_CONFIG_LOWPOWER_FAST);
+    gpio_pin_t buzzer_pin = { PORTB, GPIOB, 11 };
+    pwm_pin_t buzz_pwm = pwm_from_gpio(buzzer_pin);
+    pwm_init(buzzer_pin, buzz_pwm);
+    uint16_t adc_value = adc_read(kboard_adc);
 
+    run_task = true;
+    while (run_task) {
+        adc_value = adc_read(kboard_adc);
+        adc_value /= 7;
+        adc_value += 300;
+        pwm_period_us(buzz_pwm, adc_value);
+        pwm_pulsewidth_us(buzz_pwm, adc_value / 2);
+    }
+}
 
 // execute callback for microrl library
 int execute(int argc, const char* const* argv)
@@ -272,11 +294,13 @@ int execute(int argc, const char* const* argv)
                 } else if (strcmp(argv[i], SUBCMD_ADC_READ) == 0) {
                     adc_test_read();
                 } else if (strcmp(argv[i], SUBCMD_ADC_KPAD_TEST) == 0) {
-                    gpio_pin_t kpad_gpio = {PORTA, GPIOA, 8};
+                    gpio_pin_t kpad_gpio = { PORTA, GPIOA, 8 };
                     adc_print_on_display(kpad_gpio);
                 } else if (strcmp(argv[i], SUBCMD_ADC_KB_TEST) == 0) {
-                    gpio_pin_t kboard_gpio = {PORTA, GPIOA, 9};
+                    gpio_pin_t kboard_gpio = { PORTA, GPIOA, 9 };
                     adc_print_on_display(kboard_gpio);
+                } else if (strcmp(argv[i], SUBCMD_ADC_STYLO_DEMO) == 0) {
+                    stylophone_demo();
                 } else {
                     uart_print("ADC subcommand not found\n\r");
                 }
@@ -401,11 +425,11 @@ cmdline_status_t cmdline_init(microrl_t* readline)
     return CMDLINE_OK;
 }
 
-void process_uart() {
+void process_uart()
+{
     if (new_char) {
         new_char = false;
-        if (prl != NULL)
-        {
+        if (prl != NULL) {
             microrl_insert_char(prl, new_char_data);
         }
     }

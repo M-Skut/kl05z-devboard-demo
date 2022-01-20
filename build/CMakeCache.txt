@@ -207,7 +207,7 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 //Path to a program.
 CMAKE_STRIP:FILEPATH=/usr/bin/arm-none-eabi-strip
 
-//No help, variable specified on the command line.
+//The CMake toolchain file
 CMAKE_TOOLCHAIN_FILE:FILEPATH=/mnt/HGST/Embedded/ARM/arm-workspace/kl05z-devboard-demo/toolchain-conf/arm-none-eabi-gcc.cmake
 
 //If this value is on, makefiles will be generated without the
@@ -347,6 +347,8 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
 CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+//ADVANCED property for variable: CMAKE_OBJCOPY
+CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //objcopy tool
 CMAKE_OBJCOPY:INTERNAL=/usr/bin/arm-none-eabi-objcopy
 //ADVANCED property for variable: CMAKE_OBJDUMP

@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.15.3)
 
 # Print out extra messages to see what is going on. Comment it to have less verbose messages
-set(CMAKE_VERBOSE_MAKEFILE ON)
+set(CMAKE_VERBOSE_MAKEFILE OFF)
 
 # Path to toolchain file. This one has to be before 'project()' below
 # set(CMAKE_TOOLCHAIN_FILE ${CMAKE_SOURCE_DIR}/toolchain-conf/clang-arm-toolchain.cmake)
