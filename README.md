@@ -18,7 +18,10 @@ To make development of advanced microcontroller projects simple, the DevBoard is
 - RTC clock with battery based on PCF8563 RTC IC with I2C interface
 - LM75 I2C temperature sensor
 
-## Some photos of the hardware
+## Some photos of the hardware (more in `media` folder)
+
+![Front of the PCB](media/front.jpg)
+![Back of the PCB](media/back.jpg)
 
 ## Bill Of Materials
 Interactive Bill Of Materials for the newest revision of the hardware can be found [here](frdm05-devboard-hardware/bom/ibom.html)
